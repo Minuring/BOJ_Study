@@ -83,6 +83,7 @@
 |5622. 다이얼|[링크](./%EB%B0%B1%EC%A4%80/Bronze/5622.%E2%80%85%EB%8B%A4%EC%9D%B4%EC%96%BC/%EB%8B%A4%EC%9D%B4%EC%96%BC.java)|
 |8393. 합|[링크](./%EB%B0%B1%EC%A4%80/Bronze/8393.%E2%80%85%ED%95%A9/README.md)|
 |9086. 문자열|[링크](./%EB%B0%B1%EC%A4%80/Bronze/9086.%E2%80%85%EB%AC%B8%EC%9E%90%EC%97%B4/README.md)|
+|9093. 단어 뒤집기|[링크](./%EB%B0%B1%EC%A4%80/Bronze/9093.%E2%80%85%EB%8B%A8%EC%96%B4%E2%80%85%EB%92%A4%EC%A7%91%EA%B8%B0/README.md)|
 |9498. 시험 성적|[링크](./%EB%B0%B1%EC%A4%80/Bronze/9498.%E2%80%85%EC%8B%9C%ED%97%98%E2%80%85%EC%84%B1%EC%A0%81/README.md)|
 ### 🚀 Gold
 | 문제번호 | 링크 |
