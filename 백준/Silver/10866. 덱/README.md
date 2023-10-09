@@ -41,5 +41,5 @@
 
 ### 문제 풀이
 
- <p>파이썬 `Collections.deque` 모듈을 사용했습니다.</p>
+ <p>속도가 빠른 파이썬 `Collections.deque` 모듈을 사용했습니다.</p>
 
