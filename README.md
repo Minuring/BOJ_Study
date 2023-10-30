@@ -1,6 +1,11 @@
 # 
 # 백준 문제 풀이 목록
 
+
+### 🚀 .idea
+| 문제번호 | 링크 |
+| ----- | ----- |
+|inspectionProfiles|[링크](./.idea/inspectionProfiles/profiles_settings.xml)|
 ## 📚 백준
 ### 🚀 Bronze
 | 문제번호 | 링크 |
