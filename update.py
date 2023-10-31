@@ -35,19 +35,20 @@ def main():
         
         if directory == '.':
             continue
-            
+
         if directory not in directories:
             if directory in ["백준", "프로그래머스"]:
                 content += "## 📚 {}\n".format(directory)
             else:
-                content += "### 🚀 {}\n".format(directory)
-                content += "| 번호 | 문제 | 링크 |\n"
-                content += "| ----- | ----- | ----- |\n"
+                if directory not in ["Bronze"] :
+                    content += "### 🚀 {}\n".format(directory)
+                    content += "| 번호 | 문제 | 링크 |\n"
+                    content += "| ----- | ----- | ----- |\n"
             directories.append(directory)
 
         for file in files:
             if category not in solveds:
-                content += "|{}|{}|[링크]({})|\n".format(category.split()[0],category.split()[1], parse.quote(os.path.join(root, file)))
+                content += "|{}|{}|[링크]({})|\n".format(category.split()[0].replace('.',''),category.split()[1], parse.quote(os.path.join(root, file)))
                 solveds.append(category)
                 print("category : " + category)
 
