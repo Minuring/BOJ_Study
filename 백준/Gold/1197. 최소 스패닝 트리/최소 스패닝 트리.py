@@ -1,4 +1,5 @@
-import heapq
+import heapq;
+import sys; input = sys.stdin.readline
 V, E = map(int, input().split()) #정점 수, 간선 수
 G = [[] for _ in range(V+1)]
 for _ in range(E) :
