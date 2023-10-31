@@ -33,17 +33,16 @@ def main():
         
         directory = os.path.basename(os.path.dirname(root))
         
-        if directory == '.':
+        if directory == '.' or directory == 'Bronze':
             continue
 
         if directory not in directories:
             if directory in ["백준", "프로그래머스"]:
                 content += "## 📚 {}\n".format(directory)
             else:
-                if directory not in ["Bronze"] :
-                    content += "### 🚀 {}\n".format(directory)
-                    content += "| 번호 | 문제 | 링크 |\n"
-                    content += "| ----- | ----- | ----- |\n"
+                content += "### 🚀 {}\n".format(directory)
+                content += "| 번호 | 문제 | 링크 |\n"
+                content += "| ----- | ----- | ----- |\n"
             directories.append(directory)
 
         for file in files:
