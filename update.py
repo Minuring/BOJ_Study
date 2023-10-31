@@ -41,13 +41,13 @@ def main():
                 content += "## 📚 {}\n".format(directory)
             else:
                 content += "### 🚀 {}\n".format(directory)
-                content += "| 문제번호 | 링크 |\n"
-                content += "| ----- | ----- |\n"
+                content += "| 번호 | 문제 | 링크 |\n"
+                content += "| ----- | ----- | ----- |\n"
             directories.append(directory)
 
         for file in files:
             if category not in solveds:
-                content += "|{}|[링크]({})|\n".format(category, parse.quote(os.path.join(root, file)))
+                content += "|{}|{}|[링크]({})|\n".format(category.split()[0],category.split()[1], parse.quote(os.path.join(root, file)))
                 solveds.append(category)
                 print("category : " + category)
 
