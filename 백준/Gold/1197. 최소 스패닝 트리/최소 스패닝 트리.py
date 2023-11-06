@@ -3,20 +3,17 @@ V, E = map(int,input().split())
 
 edges = []
 for _ in range(E):
-    edges.append(list(map(int, input().split())))
-
+    u, v, w = map(int, input().split())
+    edges.append((u, v, w))
 edges.sort(key=lambda x:x[2])
 
-roots = [i for i in range(V+1)]
+roots = [i for i in range(0, V+1)]
 count = 0
-# def find(x):
-#     roots[x] = find(roots[x]) if roots[x]!=x else x
-#     return roots[x]
-def find(x):
-    if roots[x] != x:
-        roots[x] = find(roots[x])
 
-    return roots[x]
+def find(v):
+    if roots[v] != v:
+        roots[v] = find(roots[v])
+    return roots[v]
 
 for u,v,w in edges:
     uRoot, vRoot = find(u), find(v)
@@ -25,4 +22,5 @@ for u,v,w in edges:
 
         minV, maxV = min(uRoot,vRoot), max(uRoot,vRoot)
         roots[maxV] = minV
+
 print(count)
