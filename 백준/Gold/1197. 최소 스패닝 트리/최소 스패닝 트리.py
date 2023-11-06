@@ -9,8 +9,13 @@ edges.sort(key=lambda x:x[2])
 
 roots = [i for i in range(V+1)]
 count = 0
+# def find(x):
+#     roots[x] = find(roots[x]) if roots[x]!=x else x
+#     return roots[x]
 def find(x):
-    roots[x] = find(roots[x]) if roots[x]!=x else x
+    if roots[x] != x:
+        roots[x] = find(roots[x])
+
     return roots[x]
 
 for u,v,w in edges:
@@ -18,8 +23,6 @@ for u,v,w in edges:
     if uRoot != vRoot :
         count += w
 
-        if uRoot > vRoot :
-            roots[uRoot] = v
-        else :
-            roots[vRoot] = u
+        minV, maxV = min(uRoot,vRoot), max(uRoot,vRoot)
+        roots[maxV] = minV
 print(count)
