@@ -1,27 +1,25 @@
-import heapq;
-import sys; input = sys.stdin.readline
-V, E = map(int, input().split()) #정점 수, 간선 수
-G = [[] for _ in range(V+1)]
-for _ in range(E) :
-  u, v, w = map(int, input().split())
-  G[u].append([v, w])
-  G[v].append([u, w])
+import sys; input=sys.stdin.readline
+V, E = map(int,input().split())
 
-sum = 0
-visited = [False] * (V+1)
+edges = []
+for _ in range(E):
+    edges.append(list(map(int, input().split())))
 
-heap = [[0,1]]
+edges.sort(key=lambda x:x[2])
 
-while heap :
+roots = [i for i in range(V+1)]
+count = 0
+def find(x):
+    roots[x] = find(roots[x]) if roots[x]!=x else x
+    return roots[x]
 
-    w,u = heapq.heappop(heap)
-    if visited[u] : continue
+for u,v,w in edges:
+    uRoot, vRoot = find(u), find(v)
+    if uRoot != vRoot :
+        count += w
 
-    visited[u] = True
-    sum += w
-
-    # u에서 인접한 정점 탐색
-    for v,wt in G[u] :
-        heapq.heappush(heap, [wt,v])
-
-print(sum)
+        if uRoot > vRoot :
+            roots[uRoot] = v
+        else :
+            roots[vRoot] = u
+print(count)
