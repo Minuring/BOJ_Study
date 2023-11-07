@@ -20,9 +20,9 @@ def dijkstra(s):
             continue
 
         for v,w in G[min_vertex]:
-            if dist[v] > min_dist+w:
-                dist[v] = min_dist+w
-                heapq.heappush(hq,[min_dist+w,v])
+            if dist[v] > dist[min_vertex]+w:
+                dist[v] = dist[min_vertex]+w
+                heapq.heappush(hq,[dist[min_vertex]+w,v])
 
 dijkstra(start)
 for i in dist[1:]:
