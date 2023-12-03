@@ -17,6 +17,7 @@
 |1753|최단경로|[링크](./%EB%B0%B1%EC%A4%80/Gold/1753.%E2%80%85%EC%B5%9C%EB%8B%A8%EA%B2%BD%EB%A1%9C/README.md)|
 |2294|동전|[링크](./%EB%B0%B1%EC%A4%80/Gold/2294.%E2%80%85%EB%8F%99%EC%A0%84%E2%80%852/README.md)|
 |2447|별|[링크](./%EB%B0%B1%EC%A4%80/Gold/2447.%E2%80%85%EB%B3%84%E2%80%85%EC%B0%8D%EA%B8%B0%E2%80%85%EF%BC%8D%E2%80%8510/README.md)|
+|9663|N－Queen|[링크](./%EB%B0%B1%EC%A4%80/Gold/9663.%E2%80%85N%EF%BC%8DQueen/README.md)|
 ### 🚀 Silver
 | 번호 | 문제 | 링크 |
 | ----- | ----- | ----- |
