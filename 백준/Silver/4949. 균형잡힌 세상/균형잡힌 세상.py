@@ -1,4 +1,5 @@
 import re
+import sys;input=sys.stdin.readline
 while True:
     try:
         s = input().rstrip()
