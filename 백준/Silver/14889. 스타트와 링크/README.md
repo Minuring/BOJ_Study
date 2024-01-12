@@ -88,3 +88,16 @@
 
  <p>첫째 줄에 스타트 팀과 링크 팀의 능력치의 차이의 최솟값을 출력한다.</p>
 
+### Todo
+<pre>
+from itertools import combinations
+n = int(input())
+arr = [list(map(int, input().split())) for _ in range(n)]
+sum_stat = [sum(i) + sum(j) for i, j in zip(arr, zip(*arr))]
+all_stat = sum(sum_stat) // 2
+result = 1e9
+for l in combinations(sum_stat, n // 2):
+    result = min(result, abs(all_stat - sum(l)))
+print(result)
+</pre>
+위 코드 분석해보기.
