@@ -30,3 +30,34 @@
 
  <p>첫째 줄에 말이 지날 수 있는 최대의 칸 수를 출력한다.</p>
 
+### 문제 풀이
+<pre> 
+20 20
+ABCDEFGHIJKLMNOPQRST
+BCDEFGHIJKLMNOPQRSTU
+CDEFGHIJKLMNOPQRSTUV
+DEFGHIJKLMNOPQRSTUVW
+EFGHIJKLMNOPQRSTUVWX
+FGHIJKLMNOPQRSTUVWXY
+GHIJKLMNOPQRSTUVWXYZ
+HIJKLMNOPQRSTUVWXYZA
+IJKLMNOPQRSTUVWXYZAA
+JKLMNOPQRSTUVWXYZAAA
+KLMNOPQRSTUVWXYZAAAA
+LMNOPQRSTUVWXYZAAAAA
+MNOPQRSTUVWXYZAAAAAA
+NOPQRSTUVWXYZAAAAAAA
+OPQRSTUVWXYZAAAAAAAA
+</pre>
+<pre>
+위와 같은 입력에서 **DFS**는 ㄱ자와 ㄴ자 탐색을 중복으로 함
+**BFS**로 visited를 **set**과 같이 중복이 허용되지 않는 자료구조에 저장하면,
+ㄱ자로 추가된 (1,1,D)와 ㄴ자로 추가된 (1,1,D)는 하나만 저장됨
+
+다만 파이썬 set 자료구조의 pop()연산은 아무거나 랜덤하게 뽑아내기 때문에 모든 중복이 제거되지는 않음
+하지만 DFS로는 위 처럼 중복제거 메모? 기법을 사용할 수 없음 ( 깊이 들어갈 때마다 당연히 중복이 안 될테니까 )
+
+결론은 좌표쌍 i,j와 visitd알파벳 모두를 메모해야하는데 베스트는 이들을 순서대로 넣고 BFS하는 것일 듯 함
+=> 주변 8개 위치에 대해 확실한 중복제거가 될 듯
+그러려면 해시를 사용하지 않는 큐에 넣고 일일이 중복제거를 해야함
+</pre>
