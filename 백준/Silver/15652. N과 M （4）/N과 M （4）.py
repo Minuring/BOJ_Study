@@ -1,8 +1,13 @@
-from itertools import combinations_with_replacement
-
 N, M = map(int, input().split())
 
-for nums in combinations_with_replacement(range(1, N+1), M):
-    for n in nums:
-        print(n, end=' ')
-    print()
+def solve(i, L):
+    if i == M:
+        print(' '.join(map(str, L)))
+        return
+
+    for n in range(1, N+1):
+        if not L or L[-1] <= n:
+            solve(i+1, L + [n])
+
+
+solve(0, [])
