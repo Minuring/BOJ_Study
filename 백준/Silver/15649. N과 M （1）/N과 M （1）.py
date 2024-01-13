@@ -1,7 +1,12 @@
-from itertools import permutations
 N, M = map(int, input().split())
 
-for nums in permutations(range(1, N+1), M):
-    for n in nums:
-        print(n, end=' ')
-    print()
+def solve(i, L):
+    if i == M:
+        print(' '.join(map(str, L)))
+        return
+
+    for n in range(1, N+1):
+        if n not in L:
+            solve(i+1, L + [n])
+
+solve(0, [])
