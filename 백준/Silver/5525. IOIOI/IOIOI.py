@@ -5,10 +5,16 @@ N = int(input())
 M = int(input())
 S = input().rstrip()
 
-l = 2 * N + 1
-pN = 'I' + 'OI' * N
-count = 0
-for i in range(M - l + 1):
-    if S[i:i+l] == pN:
-        count += 1
+i, count, tmp = 0, 0, 0
+while i <= M - 3:
+    if S[i:i+3] == 'IOI':
+        tmp += 1
+        i += 2
+        if tmp == N:
+            count += 1
+            tmp -= 1
+    else:
+        tmp = 0
+        i += 1
+
 print(count)
