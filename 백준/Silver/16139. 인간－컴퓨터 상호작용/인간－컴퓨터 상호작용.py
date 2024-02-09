@@ -2,14 +2,14 @@ import sys
 input = sys.stdin.readline
 
 S = input().rstrip()
-freq = [[0 for _ in range(len(S))] for _ in range(26)]
+freq = [[0 for _ in range(len(S)+1)] for _ in range(26)]
 for seq, ch in enumerate(S): #O(N)
     row = (ord(ch) - 97)
-    freq[row][seq] = 1
+    freq[row][seq+1] = 1
 
-from itertools import accumulate
-for row in range(26):
-    freq[row] = [0] + list(accumulate(freq[row]))
+    for j in range(26):
+        freq[j][seq+1] += freq[j][seq]
+
 
 Q = int(input())
 for _ in range(Q):
