@@ -2,23 +2,26 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        byte[][] table = new byte[9][9];
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int max=0, row=0, col=0;
-        for(int i=0; i<9; i++){
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            for(int j=0; j<9; j++){
-                int num = Integer.parseInt(st.nextToken());
-                if(num > max){
-                    max = num;
-                    row = i; col = j;
-                }
-            }
-        }
-        bw.write(String.format("%d\n%d %d",max,row+1,col+1));
-        bw.close();
-    }
+	public static void main(String[] args) throws IOException {
+		var br = new BufferedReader(new InputStreamReader(System.in));
+
+		var max = Integer.MIN_VALUE;
+		var maxR = 0;
+		var maxC = 0;
+
+		for(int r=0; r<9; r++) {
+			var line = br.readLine().split(" ");
+			for(int c=0; c<9; c++) {
+				var n = Integer.parseInt(line[c]);
+				if (n > max) {
+					maxR = r;
+					maxC = c;
+					max = n;
+				}
+			}
+		}
+
+		System.out.printf("%d\n%d %d", max, maxR+1, maxC+1);
+	}
 }
