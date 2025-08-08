@@ -2,25 +2,29 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        char[][] array = new char[5][];
-        int maxcount=0;
-        for(int i=0; i<5; i++){
-            String line=br.readLine();
-            int length = line.length();
-            if(length>maxcount) maxcount=length;
-            array[i]= new char[length];
-            for(int j=0; j<length; j++){
-                array[i][j] = line.charAt(j);
+        var br = new BufferedReader(new InputStreamReader(System.in));
+
+        var arr = new ArrayList<char[]>();
+        var maxLength = 0;
+        while(true) {
+            var line = br.readLine();
+            if (line == null) break;
+
+            var chars = line.toCharArray();
+            maxLength = Math.max(maxLength, chars.length);
+            arr.add(chars);
+        }
+
+        var sb = new StringBuilder();
+        for(int c=0; c<maxLength; c++) {
+            for(int r=0; r<5; r++) {
+                if (arr.get(r).length <= c) continue;
+                sb.append(arr.get(r)[c]);
             }
         }
-        for(int i=0; i<maxcount; i++){
-            for(int j=0; j<5; j++){
-                    if(array[j].length>i) bw.write(array[j][i]);
-            }
-        }
-        bw.close();
+
+        System.out.print(sb);
     }
 }
