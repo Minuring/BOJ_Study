@@ -1,39 +1,21 @@
 import java.util.*;
 import java.util.stream.*;
 import static java.util.stream.Collectors.*;
+import static java.util.Comparator.*;
 
 class Solution {
     public int[] solution(String[] genres, int[] plays) {
-        List<Song> songs = new ArrayList<>();
-        for(int i=0; i < genres.length; i++) {
-            Song s = new Song(genres[i], plays[i], i);
-            songs.add(s);
-        }
-        
-        // plays의 합 기준 내림차순 정렬된 장르들
-        List<String> genreOrder = songs.stream()
-            .collect(groupingBy(s -> s.genre, summingInt(s -> s.plays)))
-            .entrySet()
-            .stream()
-            .sorted(Comparator.comparing(Map.Entry<String, Integer>::getValue).reversed())
-            .map(e -> ((Map.Entry<String,Integer>)e).getKey())
-            .collect(Collectors.toList());
-        
-        // 장르 별 노래들
-        Map<String, List<Song>> genreSongs = songs.stream().collect(groupingBy(s -> s.genre));
-        List<Integer> ids = new ArrayList<>();
-        for (String g : genreOrder) {
-            List<Song> gs = genreSongs.get(g);
-            gs.sort(Comparator.comparing(s -> ((Song)s).plays).reversed());
-            
-            int toIdx = Math.min(2, gs.size());
-            List<Song> truncatedSongs = gs.subList(0, toIdx);
-            truncatedSongs.forEach(s -> ids.add(s.id));
-        }
-        return ids.stream().mapToInt(Integer::intValue).toArray();
+        return IntStream.range(0, genres.length)
+            .mapToObj(i -> new Song(genres[i], plays[i], i))
+            .collect(groupingBy(s -> s.genre)) // Map<String, List<Song>>
+            .entrySet().stream() // Stream<Map.Entry<String, List<Song>>>
+            .sorted(comparingInt(e -> e.getValue().stream().mapToInt(s -> s.plays).sum() * -1))
+            .flatMap(e -> e.getValue().stream().sorted().limit(2)) // Stream<Song>
+            .mapToInt(s -> s.id)
+            .toArray();
     }
     
-    static class Song {
+    static class Song implements Comparable<Song> {
         public String genre;
         public int plays;
         public int id;
@@ -42,6 +24,12 @@ class Solution {
             genre = g;
             plays = p;
             this.id = id;
+        }
+        
+        public int compareTo(Song other) {
+            int comp = Integer.compare(other.plays, this.plays);
+            if (comp != 0) return comp;
+            return Integer.compare(this.id, other.id);
         }
     }
 }
