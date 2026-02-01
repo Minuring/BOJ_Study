@@ -21,7 +21,9 @@ public class Main {
             var bronze = Integer.parseInt(spl[3]);
             var country = new Country(countryId, gold, silver, bronze);
             countries.add(country);
-            if (countryId == k) countryToFind = country;
+            if (countryId == k) {
+                countryToFind = country;
+            }
         }
 
         Collections.sort(countries);
@@ -30,14 +32,25 @@ public class Main {
     }
 
     private static int getRank(final List<Country> countries, final Country countryToFind) {
-        if (countries.get(0) == countryToFind) return 1;
+        if (countries.get(0) == countryToFind) {
+            return 1;
+        }
         var rank = 1;
+        var skipped = 0;
         for (int i = 1; i < countries.size(); i++) {
             var before = countries.get(i - 1);
             var cur = countries.get(i);
-            if (before.compareTo(cur) != 0) rank++;
 
-            if (cur == countryToFind) break;
+            if (before.compareTo(cur) == 0) {
+                skipped++;
+            } else {
+                rank += skipped + 1;
+                skipped = 0;
+            }
+
+            if (cur == countryToFind) {
+                break;
+            }
         }
         return rank;
     }
