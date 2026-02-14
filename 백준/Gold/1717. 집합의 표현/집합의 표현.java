@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class Main {
 
@@ -10,9 +9,11 @@ public class Main {
         var n = Integer.parseInt(split[0]);
         var m = Integer.parseInt(split[1]);
 
-        var parents = new int[n+1];
+        var parents = new int[n + 1];
+        var depth = new int[n + 1];
         for (int i = 0; i <= n; i++) {
             parents[i] = i;
+            depth[i] = 0;
         }
 
         for (int i = 0; i < m; i++) {
@@ -24,8 +25,17 @@ public class Main {
                 // union 1,2
                 var p1 = findParent(parents, operand1);
                 var p2 = findParent(parents, operand2);
-                if (p1 != p2) {
-                    parents[p1] = parents[p2] = parents[p1];
+                if (p1 == p2) {
+                    continue;
+                }
+
+                if (depth[p1] > depth[p2]) {
+                    parents[p2] = parents[p1];
+                } else if (depth[p1] < depth[p2]) {
+                    parents[p1] = parents[p2];
+                } else {
+                    parents[p2] = parents[p1];
+                    depth[p1] += 1;
                 }
 
             } else {
@@ -34,13 +44,14 @@ public class Main {
                 var p2 = findParent(parents, operand2);
                 System.out.println(p1 == p2 ? "YES" : "NO");
             }
-//            System.out.println(Arrays.toString(parents));
         }
     }
 
     private static int findParent(int[] parents, int i) {
         while (parents[i] != i) {
+            var tmp = i;
             i = parents[i];
+            parents[tmp] = parents[i];
         }
         return i;
     }
