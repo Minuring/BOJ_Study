@@ -1,41 +1,64 @@
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Main {
+
+    static class MyStack {
+        private final char[] arr;
+        private int top = -1;
+
+        public MyStack(int size) {
+            this.arr = new char[size];
+        }
+
+        public void push(char c) {
+            arr[++top] = c;
+        }
+
+        public int size() {
+            return top + 1;
+        }
+
+        public boolean containsLast(String str) {
+            if (size() < str.length()) {
+                return false;
+            }
+            for (int i = 0; i < str.length(); i++) {
+                var i_stack = this.size() - str.length() + i;
+                if (arr[i_stack] != str.charAt(i)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public void removeLastN(int n) {
+            top -= n;
+        }
+
+        public String asString() {
+            var sb = new StringBuilder();
+            for (int i = 0; i <= top; i++) {
+                sb.append(arr[i]);
+            }
+            return sb.toString();
+        }
+    }
 
     public static void main(String[] args) {
         var scanner = new Scanner(System.in);
         var str = scanner.nextLine();
         var bomb = scanner.nextLine();
 
-        var stack = new Stack<Character>();
         var chars = str.toCharArray();
+        var stack = new MyStack(str.length());
         for (var ch : chars) {
             stack.push(ch);
-            var flag = true;
-            while (stack.size() >= bomb.length() && flag) {
-                // 마지막에 폭탄 문자열 있는 지 확인
-                for (int i = 0; i < bomb.length(); i++) {
-                    var i_stack = stack.size() - bomb.length() + i;
-                    if (stack.get(i_stack) != bomb.charAt(i)) {
-                        flag = false;
-                        break;
-                    }
-                }
-                // 제거
-                if (flag) {
-                    for (int i = 0; i < bomb.length(); i++) {
-                        stack.pop();
-                    }
-                }
+            while (stack.containsLast(bomb)) {
+                stack.removeLastN(bomb.length());
             }
         }
 
-        var sb = new StringBuilder();
-        for (var ch : stack) {
-            sb.append(ch);
-        }
-        var result = sb.toString();
+        var result = stack.asString();
         System.out.println(result.isEmpty() ? "FRULA" : result);
     }
 }
