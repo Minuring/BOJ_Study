@@ -36,11 +36,7 @@ public class Main {
         }
 
         public String asString() {
-            var sb = new StringBuilder();
-            for (int i = 0; i <= top; i++) {
-                sb.append(arr[i]);
-            }
-            return sb.toString();
+            return new String(arr, 0, top + 1);
         }
     }
 
@@ -53,7 +49,7 @@ public class Main {
         var stack = new MyStack(str.length());
         for (var ch : chars) {
             stack.push(ch);
-            while (stack.containsLast(bomb)) {
+            if (stack.containsLast(bomb)) {
                 stack.removeLastN(bomb.length());
             }
         }
