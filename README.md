@@ -79,6 +79,7 @@
 |7662|이중|[링크](./%EB%B0%B1%EC%A4%80/Gold/7662.%E2%80%85%EC%9D%B4%EC%A4%91%E2%80%85%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84%E2%80%85%ED%81%90/README.md)|
 |9251|LCS|[링크](./%EB%B0%B1%EC%A4%80/Gold/9251.%E2%80%85LCS/README.md)|
 |9663|N－Queen|[링크](./%EB%B0%B1%EC%A4%80/Gold/9663.%E2%80%85N%EF%BC%8DQueen/README.md)|
+|9935|문자열|[링크](./%EB%B0%B1%EC%A4%80/Gold/9935.%E2%80%85%EB%AC%B8%EC%9E%90%EC%97%B4%E2%80%85%ED%8F%AD%EB%B0%9C/README.md)|
 ### 🚀 Gold V
 | 번호 | 문제 | 링크 |
 | ----- | ----- | ----- |
