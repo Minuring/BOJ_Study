@@ -12,15 +12,10 @@ public class Main {
         }
 
         for (int i = 1; i < n + 1; i++) {
-            var root_i = Math.sqrt(i);
-            if (root_i % 1 == 0) {
-                dp[i] = 1;
-            } else {
-                for (int j = 1; j * j <= i; j++) {
-                    var square_j = 1 + dp[i - j * j];
-                    if (square_j < dp[i]) {
-                        dp[i] = square_j;
-                    }
+            for (int j = 1; j * j <= i; j++) {
+                var square_j = 1 + dp[i - j * j];
+                if (square_j < dp[i]) {
+                    dp[i] = square_j;
                 }
             }
         }
