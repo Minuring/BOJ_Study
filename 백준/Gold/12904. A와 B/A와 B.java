@@ -4,29 +4,19 @@ public class Main {
 
     public static void main(String[] args) {
         var scanner = new Scanner(System.in);
-        var s = scanner.nextLine();
-        var t = scanner.nextLine();
+        var s = new StringBuilder(scanner.nextLine());
+        var t = new StringBuilder(scanner.nextLine());
 
-        backtrack(new StringBuilder(s), t);
-        System.out.println(found ? 1 : 0);
-    }
+        while (s.length() < t.length()) {
+            var last_t = t.charAt(t.length() - 1);
+            t = t.deleteCharAt(t.length() - 1);
 
-    static boolean found = false;
-
-    private static void backtrack(StringBuilder s, String t) {
-        if (s.toString().equals(t)) {
-            found = true;
-            return;
+            if (last_t == 'B') {
+                t = t.reverse();
+            }
         }
 
-        var v1 = new StringBuilder(s).append('A');
-        if (!found && (t.contains(v1) || t.contains(new StringBuilder(v1).reverse()))) {
-            backtrack(v1, t);
-        }
-
-        var v2 = new StringBuilder(s).reverse().append('B');
-        if (!found && (t.contains(v2) || t.contains(new StringBuilder(v2).reverse()))) {
-            backtrack(v2, t);
-        }
+        var ans = s.toString().contentEquals(t);
+        System.out.println(ans ? 1 : 0);
     }
 }
