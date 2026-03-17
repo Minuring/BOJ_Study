@@ -1,13 +1,13 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class Main {
 
-    public static final Map<Integer, Map<Integer, Integer>> graph = new HashMap<>();
+    public static List<Edge>[] graph;
 
     public static void main(String[] args) throws Exception {
         var br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,6 +15,7 @@ public class Main {
         var v = Integer.parseInt(split[0]);
         var e = Integer.parseInt(split[1]);
         var k = Integer.parseInt(br.readLine());
+        graph = new List[v + 1];
 
         for (int i = 0; i < e; i++) {
             var spl = br.readLine().split(" ");
@@ -41,25 +42,29 @@ public class Main {
         while (!pq.isEmpty()) {
             var pair = pq.poll();
             var vtx = pair.v;
-            if (!graph.containsKey(vtx)) {
-                continue;
-            }
-            if (dist[vtx] < pair.dist) {
+            if (graph[vtx] == null || dist[vtx] < pair.dist) {
                 continue;
             }
 
-            var map = graph.get(vtx);
-            for (var entry : map.entrySet()) {
-                var dest = entry.getKey();
-                var weight = entry.getValue();
-
-                if (dist[dest] > dist[vtx] + weight) {
-                    dist[dest] = dist[vtx] + weight;
-                    pq.offer(new Pair(dist[dest], dest));
+            var edges = graph[vtx];
+            for (var e : edges) {
+                if (dist[e.dest] > dist[vtx] + e.weight) {
+                    dist[e.dest] = dist[vtx] + e.weight;
+                    pq.offer(new Pair(dist[e.dest], e.dest));
                 }
             }
         }
         return Arrays.copyOfRange(dist, 1, v + 1);
+    }
+
+    private static class Edge {
+        int dest;
+        int weight;
+
+        public Edge(int d, int w) {
+            dest = d;
+            weight = w;
+        }
     }
 
     private static class Pair {
@@ -74,7 +79,9 @@ public class Main {
 
 
     public static void addEdge(int from, int to, int weight) {
-        graph.putIfAbsent(from, new HashMap<>());
-        graph.get(from).merge(to, weight, Math::min);
+        if (graph[from] == null) {
+            graph[from] = new ArrayList<>();
+        }
+        graph[from].add(new Edge(to, weight));
     }
 }
