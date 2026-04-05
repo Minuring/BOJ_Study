@@ -1,10 +1,9 @@
 class Solution {
     fun solution(str1: String, str2: String): String {
-        val sb = StringBuilder()
-        for (i in str1.indices) {
-            sb.append(str1[i])
-            sb.append(str2[i])
+        return buildString {
+            for (i in str1.indices) {
+                append("${str1[i]}${str2[i]}")
+            }
         }
-        return sb.toString()
     }
 }
